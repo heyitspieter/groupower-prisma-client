@@ -22,8 +22,5 @@
   "files": [
     "src/index.d.ts",
     "prisma/schema.prisma"
-  ],
-  "publishConfig": {
-    "@heyitspieter:registry": "https://npm.pkg.github.com"
-  }
+  ]
 }
