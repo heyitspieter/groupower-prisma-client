@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum APPLICATION_STATUS {
+  pending
+  approved
+  declined
+}
+
+enum ROLE {
+  USER
+  ADMIN
+  SUPER_ADMIN
+  AGENT
+  COLLABORATOR
+}
+
+enum ACCOUNT_STATUS {
+  suspended
+  active
+  pending
+}
+
+type Location {
+  description String
+  lat         Int
+  lng         Int
+}
+
+type Country {
+  flag   String
+  label  String
+  latlng Int[]
+  region String
+  value  String
+}
+
+model User {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  email          String         @unique
+  firstname      String?
+  lastname       String?
+  emailVerified  Boolean?
+  avatar         String?
+  role           ROLE           @default(USER)
+  invited        Boolean?
+  hashedPassword String
+  createdAt      DateTime       @default(now())
+  lastUpdatedAt  DateTime       @updatedAt
+  account_status ACCOUNT_STATUS @default(active)
+
+  applications Application[]
+}
+
+model Application {
+  id               String             @id @default(auto()) @map("_id") @db.ObjectId
+  application_id   String             @unique
+  type             String
+  firstname        String
+  lastname         String
+  email_address    String
+  contact_address  Location
+  country          Country
+  city             String
+  state            String
+  zipCode          String
+  phone_number     String?
+  userId           String             @db.ObjectId
+  employment       Json?
+  company_info     Json?
+  housing          Json?
+  company_expenses Json?
+  kyc_verification Json?
+  documentations   Json?
+  editExpiry       DateTime
+  approvedBy       String?            @db.ObjectId
+  status           APPLICATION_STATUS @default(pending)
+  createdAt        DateTime           @default(now())
+  lastUpdatedAt    DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model NG_STATES {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  sId  String
+  name String
+}
+
+model Admin {
+  id             String         @id @default(auto()) @map("_id") @db.ObjectId
+  email          String         @unique
+  firstname      String?
+  lastname       String?
+  emailVerified  Boolean?
+  avatar         String?
+  role           ROLE           @default(ADMIN)
+  hashedPassword String
+  createdAt      DateTime       @default(now())
+  lastUpdatedAt  DateTime       @updatedAt
+  account_status ACCOUNT_STATUS @default(active)
+}

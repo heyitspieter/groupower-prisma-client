@@ -1,0 +1,25 @@
+{
+  "name": "@heyitspieter/groupower-prisma-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:introspect": "dotenv -- prisma introspect",
+    "db:generate": "dotenv -- prisma generate",
+    "postinstall": "tsc && cp src/index.d.ts dist/index.d.ts && npx prisma@5.2.0 generate"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv-cli": "^7.3.0",
+    "prisma": "^5.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.2.0"
+  },
+  "publishConfig": {
+    "@heyitspieter:registry": "https://npm.pkg.github.com"
+  }
+}
