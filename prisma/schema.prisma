@@ -44,6 +44,82 @@ type Country {
   value  String
 }
 
+enum WORK_STATUS {
+  SELF_EMPLOYED
+  EMPLOYEE
+}
+
+enum APPLIANCES {
+  microwave
+  steam_iron
+  television
+  dish_washer
+  refrigerator
+  aircondition
+  water_heater_system
+  exterior_light_points
+  interior_light_points
+}
+
+type Employment {
+  business_name        String?
+  business_address     Location?
+  work_phone           String?
+  business_duration    String?
+  net_revenue          String?
+  employment_status    WORK_STATUS?
+  business_certificate String?
+
+  employer_name    String?
+  employer_address Location?
+  time_at_employer String?
+  net_income       String?
+  proof_of_salary  String?
+}
+
+type CompanyInfo {
+  company_name          String
+  company_role          String
+  company_email_address String
+  work_phone            String
+  company_address       Location
+  country               Country
+  city                  String
+  state                 String
+  zipCode               String
+}
+
+type Appliances {
+  type  APPLIANCES
+  count Int
+}
+
+type HousingInfo {
+  beds                String
+  building_type       String
+  electricity_cost    String
+  solar_mount_address Location
+  appliances          Appliances[]
+}
+
+type CompanyExpenses {
+  govt_electricity_cost  String
+  govt_electricity_hours String
+  power_generation_cost  String
+  power_generation_hours String
+}
+
+type KYC {
+  bvn_number             String
+  kyc_verification_media String
+}
+
+type Documentations {
+  tax_certificate      String
+  business_reg_number  String
+  business_certificate String
+}
+
 model User {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   email          String         @unique
@@ -73,14 +149,14 @@ model Application {
   city             String
   state            String
   zipCode          String
-  phone_number     String?
+  phone_number     String
   userId           String             @db.ObjectId
-  employment       Json?
-  company_info     Json?
-  housing          Json?
-  company_expenses Json?
-  kyc_verification Json?
-  documentations   Json?
+  employment       Employment?
+  company_info     CompanyInfo?
+  housing          HousingInfo?
+  company_expenses CompanyExpenses?
+  kyc_verification KYC?
+  documentations   Documentations?
   editExpiry       DateTime
   approvedBy       String?            @db.ObjectId
   status           APPLICATION_STATUS @default(pending)
