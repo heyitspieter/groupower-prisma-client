@@ -49,6 +49,13 @@ enum WORK_STATUS {
   EMPLOYEE
 }
 
+enum Operations {
+  CREATE
+  DELETE
+  EDIT
+  UPDATE
+}
+
 enum APPLIANCES {
   microwave
   steam_iron
@@ -110,6 +117,7 @@ type CompanyExpenses {
 }
 
 type KYC {
+  verified               Boolean
   bvn_number             String
   kyc_verification_media String
 }
@@ -118,6 +126,13 @@ type Documentations {
   tax_certificate      String
   business_reg_number  String
   business_certificate String
+}
+
+type Permission {
+  applications Operations[]
+  admins       Operations[]
+  users        Operations[]
+  agents       Operations[]
 }
 
 model User {
@@ -179,6 +194,7 @@ model Admin {
   lastname       String?
   emailVerified  Boolean?
   avatar         String?
+  permissions    Permission
   role           ROLE           @default(ADMIN)
   hashedPassword String
   createdAt      DateTime       @default(now())
