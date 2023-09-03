@@ -49,11 +49,13 @@ enum WORK_STATUS {
   EMPLOYEE
 }
 
-enum Operations {
+enum Actions {
   CREATE
   DELETE
   EDIT
   UPDATE
+  LIST
+  READ
 }
 
 enum APPLIANCES {
@@ -129,10 +131,10 @@ type Documentations {
 }
 
 type Permission {
-  applications Operations[]
-  admins       Operations[]
-  users        Operations[]
-  agents       Operations[]
+  applications Actions[]
+  admins       Actions[]
+  users        Actions[]
+  agents       Actions[]
 }
 
 model User {
