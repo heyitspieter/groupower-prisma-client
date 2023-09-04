@@ -32,14 +32,14 @@ enum ACCOUNT_STATUS {
 
 type Location {
   description String
-  lat         Int
-  lng         Int
+  lat         Float
+  lng         Float
 }
 
 type Country {
   flag   String
   label  String
-  latlng Int[]
+  latlng Float[]
   region String
   value  String
 }
