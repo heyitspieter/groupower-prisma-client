@@ -75,12 +75,14 @@ type Employment {
   business_address     Location?
   work_phone           String?
   business_duration    String?
+  business_website     String?
   net_revenue          String?
   employment_status    WORK_STATUS?
   business_certificate String?
 
   employer_name    String?
   employer_address Location?
+  salary_account   String?
   time_at_employer String?
   net_income       String?
   proof_of_salary  String?
@@ -137,6 +139,24 @@ type Permission {
   agents       Actions[]
 }
 
+enum TwoFactorAuthChannel {
+  Email
+  SMS
+}
+
+type TwoFactorAuth {
+  enabled Boolean
+  channel TwoFactorAuthChannel
+}
+
+type UserAuthConfig {
+  two_factor_auth TwoFactorAuth
+}
+
+type Settings {
+  auth UserAuthConfig
+}
+
 model User {
   id             String         @id @default(auto()) @map("_id") @db.ObjectId
   email          String         @unique
@@ -146,6 +166,7 @@ model User {
   avatar         String?
   role           ROLE           @default(USER)
   invited        Boolean?
+  config         Settings?
   hashedPassword String
   createdAt      DateTime       @default(now())
   lastUpdatedAt  DateTime       @updatedAt
