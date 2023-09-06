@@ -167,6 +167,7 @@ model User {
   role           ROLE           @default(USER)
   invited        Boolean?
   config         Settings?
+  phone_number   String?
   hashedPassword String
   createdAt      DateTime       @default(now())
   lastUpdatedAt  DateTime       @updatedAt
