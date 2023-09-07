@@ -172,8 +172,8 @@ model User {
   createdAt         DateTime       @default(now())
   lastUpdatedAt     DateTime       @updatedAt
   account_status    ACCOUNT_STATUS @default(active)
-  verification_link String?
-  reset_link        String?
+  verification_link String?        @unique
+  reset_link        String?        @unique
 
   applications Application[]
 }
