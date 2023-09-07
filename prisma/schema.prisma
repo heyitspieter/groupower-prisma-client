@@ -158,20 +158,22 @@ type Settings {
 }
 
 model User {
-  id             String         @id @default(auto()) @map("_id") @db.ObjectId
-  email          String         @unique
-  firstname      String?
-  lastname       String?
-  emailVerified  Boolean?
-  avatar         String?
-  role           ROLE           @default(USER)
-  invited        Boolean?
-  config         Settings?
-  phone_number   String?
-  hashedPassword String
-  createdAt      DateTime       @default(now())
-  lastUpdatedAt  DateTime       @updatedAt
-  account_status ACCOUNT_STATUS @default(active)
+  id                String         @id @default(auto()) @map("_id") @db.ObjectId
+  email             String         @unique
+  firstname         String?
+  lastname          String?
+  emailVerified     Boolean?
+  avatar            String?
+  role              ROLE           @default(USER)
+  invited           Boolean?
+  config            Settings?
+  phone_number      String?
+  hashedPassword    String
+  createdAt         DateTime       @default(now())
+  lastUpdatedAt     DateTime       @updatedAt
+  account_status    ACCOUNT_STATUS @default(active)
+  verification_link String?
+  reset_link        String?
 
   applications Application[]
 }
