@@ -81,6 +81,12 @@ enum Actions {
   READ
 }
 
+type Bank_account {
+  number Int
+  bank String
+  holder String
+}
+
 enum APPLIANCES {
   microwave
   steam_iron
@@ -105,7 +111,7 @@ type Employment {
 
   employer_name    String?
   employer_address Location?
-  salary_account   String?
+  salary_account   Bank_account?
   time_at_employer String?
   net_income       String?
   proof_of_salary  String?
