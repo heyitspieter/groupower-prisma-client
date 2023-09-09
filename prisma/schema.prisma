@@ -50,14 +50,26 @@ enum WORK_STATUS {
 }
 
 enum GENDER {
-  MALE
-  FEMALE
+  Male
+  Female
 }
 
 enum PREFIX {
-  MR
-  MRS
-  MISS
+  Mr
+  Mrs
+  Miss
+}
+
+enum MARITAL_STATUS {
+  Single
+  Married
+  Widowed
+  Divorced
+}
+
+enum MOUNT_TYPE {
+  ROOF_MOUNT
+  FLOOR_MOUNT
 }
 
 enum Actions {
@@ -97,6 +109,7 @@ type Employment {
   time_at_employer String?
   net_income       String?
   proof_of_salary  String?
+  job_letter       String?
 }
 
 type CompanyInfo {
@@ -120,6 +133,8 @@ type HousingInfo {
   beds                String
   building_type       String
   electricity_cost    String
+  num_residents       Int
+  mount_type          MOUNT_TYPE
   solar_mount_address Location
   appliances          Appliances[]
 }
@@ -197,6 +212,9 @@ model Application {
   type             String
   firstname        String
   lastname         String
+  middlename       String
+  marital_status   MARITAL_STATUS?
+  num_children     Int?
   email_address    String
   contact_address  Location
   country          Country
