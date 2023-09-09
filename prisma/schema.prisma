@@ -30,20 +30,6 @@ enum ACCOUNT_STATUS {
   pending
 }
 
-type Location {
-  description String
-  lat         Float
-  lng         Float
-}
-
-type Country {
-  flag   String
-  label  String
-  latlng Float[]
-  region String
-  value  String
-}
-
 enum WORK_STATUS {
   SELF_EMPLOYED
   EMPLOYEE
@@ -83,7 +69,7 @@ enum Actions {
 
 type Bank_account {
   number Int
-  bank String
+  bank   String
   holder String
 }
 
@@ -97,6 +83,25 @@ enum APPLIANCES {
   water_heater_system
   exterior_light_points
   interior_light_points
+}
+
+enum TwoFactorAuthChannel {
+  Email
+  SMS
+}
+
+type Location {
+  description String
+  lat         Float
+  lng         Float
+}
+
+type Country {
+  flag   String
+  label  String
+  latlng Float[]
+  region String
+  value  String
 }
 
 type Employment {
@@ -135,6 +140,23 @@ type Appliances {
   count Int
 }
 
+type PersonalInfo {
+  firstname       String
+  lastname        String
+  middlename      String
+  gender          GENDER
+  prefix          PREFIX
+  marital_status  MARITAL_STATUS
+  num_children    Int?
+  email_address   String
+  contact_address Location
+  country         Country
+  city            String
+  state           String
+  zipCode         String
+  phone_number    String
+}
+
 type HousingInfo {
   beds                String
   building_type       String
@@ -169,11 +191,6 @@ type Permission {
   admins       Actions[]
   users        Actions[]
   agents       Actions[]
-}
-
-enum TwoFactorAuthChannel {
-  Email
-  SMS
 }
 
 type TwoFactorAuth {
@@ -216,22 +233,11 @@ model Application {
   id               String             @id @default(auto()) @map("_id") @db.ObjectId
   application_id   String             @unique
   type             String
-  firstname        String
-  lastname         String
-  middlename       String
-  marital_status   MARITAL_STATUS?
-  num_children     Int?
-  email_address    String
-  contact_address  Location
-  country          Country
-  city             String
-  state            String
-  zipCode          String
-  phone_number     String
+  personal_info    PersonalInfo
   userId           String             @db.ObjectId
   employment       Employment?
   company_info     CompanyInfo?
-  housing          HousingInfo?
+  housing_info     HousingInfo?
   company_expenses CompanyExpenses?
   kyc_verification KYC?
   documentations   Documentations?
