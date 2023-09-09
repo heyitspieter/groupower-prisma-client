@@ -49,6 +49,17 @@ enum WORK_STATUS {
   EMPLOYEE
 }
 
+enum GENDER {
+  MALE
+  FEMALE
+}
+
+enum PREFIX {
+  MR
+  MRS
+  MISS
+}
+
 enum Actions {
   CREATE
   DELETE
@@ -167,13 +178,15 @@ model User {
   role              ROLE           @default(USER)
   invited           Boolean?
   config            Settings?
+  prefix            PREFIX
+  gender            GENDER
   phone_number      String?
   hashedPassword    String
   createdAt         DateTime       @default(now())
   lastUpdatedAt     DateTime       @updatedAt
   account_status    ACCOUNT_STATUS @default(active)
-  verification_link String?        @unique
-  reset_link        String?        @unique
+  verification_link String?
+  reset_link        String?
 
   applications Application[]
 }
