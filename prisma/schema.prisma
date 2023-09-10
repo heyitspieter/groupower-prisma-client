@@ -68,7 +68,7 @@ enum Actions {
 }
 
 type Bank_account {
-  number Int
+  number String
   bank   String
   holder String
 }
