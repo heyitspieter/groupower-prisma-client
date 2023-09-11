@@ -206,6 +206,11 @@ type Settings {
   auth UserAuthConfig
 }
 
+type ResetPassword {
+  token     String
+  expiresIn DateTime
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -224,7 +229,7 @@ model User {
   lastUpdatedAt     DateTime       @updatedAt
   account_status    ACCOUNT_STATUS @default(active)
   verification_link String?
-  reset_link        String?
+  reset_link        ResetPassword?
 
   applications Application[]
 }
