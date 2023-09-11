@@ -212,7 +212,7 @@ type ResetPassword {
 }
 
 type Invites {
-  id String @db.ObjectId
+  id String? @db.ObjectId
 }
 
 model User {
@@ -227,7 +227,7 @@ model User {
   config            Settings?
   prefix            PREFIX
   invite_id         String?
-  invites           Invites[]?
+  invites           Invites[]
   gender            GENDER
   phone_number      String?
   hashedPassword    String
