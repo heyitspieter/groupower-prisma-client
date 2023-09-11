@@ -44,6 +44,9 @@ enum PREFIX {
   Mr
   Mrs
   Miss
+  Professor
+  Doctor
+  Chief
 }
 
 enum MARITAL_STATUS {
