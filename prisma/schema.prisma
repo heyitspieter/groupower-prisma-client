@@ -211,6 +211,10 @@ type ResetPassword {
   expiresIn DateTime
 }
 
+type Invites {
+  id String @db.ObjectId
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -223,6 +227,7 @@ model User {
   config            Settings?
   prefix            PREFIX
   invite_id         String?
+  invites           Invites[]?
   gender            GENDER
   phone_number      String?
   hashedPassword    String
