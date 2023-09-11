@@ -222,6 +222,7 @@ model User {
   invited           Boolean?
   config            Settings?
   prefix            PREFIX
+  invite_id         String?
   gender            GENDER
   phone_number      String?
   hashedPassword    String
