@@ -106,7 +106,7 @@ type Country {
 
 type Employment {
   business_name        String?
-  business_address     Location?
+  business_address     String?
   work_phone           String?
   business_duration    String?
   business_website     String?
@@ -115,7 +115,7 @@ type Employment {
   business_certificate String?
 
   employer_name    String?
-  employer_address Location?
+  employer_address String?
   salary_account   Bank_account?
   time_at_employer String?
   net_income       String?
@@ -128,7 +128,7 @@ type CompanyInfo {
   company_role          String
   company_email_address String
   work_phone            String
-  company_address       Location
+  company_address       String
   country               Country
   city                  String
   state                 String
@@ -149,7 +149,7 @@ type PersonalInfo {
   marital_status  MARITAL_STATUS
   num_children    Int?
   email_address   String
-  contact_address Location
+  contact_address String
   country         Country
   city            String
   state           String
