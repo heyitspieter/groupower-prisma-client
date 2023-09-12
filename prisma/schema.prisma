@@ -47,6 +47,7 @@ enum PREFIX {
   Professor
   Doctor
   Chief
+  Pastor
 }
 
 enum MARITAL_STATUS {
@@ -70,12 +71,6 @@ enum Actions {
   READ
 }
 
-type Bank_account {
-  number String
-  bank   String
-  holder String
-}
-
 enum APPLIANCES {
   microwave
   steam_iron
@@ -93,6 +88,12 @@ enum TwoFactorAuthChannel {
   SMS
 }
 
+type Bank_account {
+  number String
+  bank   String
+  holder String
+}
+
 type Location {
   description String
   lat         Float
@@ -107,6 +108,15 @@ type Country {
   value  String
 }
 
+type EmployerSupervisor {
+  firstname     String
+  lastname      String
+  company_role  String
+  middlename    String
+  email_address String
+  phone_number  String
+}
+
 type Employment {
   business_name        String?
   business_address     String?
@@ -114,16 +124,18 @@ type Employment {
   business_duration    String?
   business_website     String?
   net_revenue          String?
-  employment_status    WORK_STATUS?
   business_certificate String?
 
-  employer_name    String?
-  employer_address String?
-  salary_account   Bank_account?
-  time_at_employer String?
-  net_income       String?
-  proof_of_salary  String?
-  job_letter       String?
+  employer_name       String?
+  employer_address    String?
+  employer_supervisor EmployerSupervisor?
+  salary_account      Bank_account?
+  time_at_employer    String?
+  net_income          String?
+  proof_of_salary     String?
+  job_letter          String?
+
+  employment_status WORK_STATUS?
 }
 
 type CompanyInfo {
