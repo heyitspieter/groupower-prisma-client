@@ -341,7 +341,7 @@ model Message {
   seen    ChatMember[] @relation("Seen", fields: [seenIds], references: [id])
 
   chatId       String @db.ObjectId
-  conversation Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chat Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
 
   senderId String     @db.ObjectId
   sender   ChatMember @relation(fields: [senderId], references: [id], onDelete: Cascade)
