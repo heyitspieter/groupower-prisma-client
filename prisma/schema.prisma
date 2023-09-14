@@ -295,24 +295,30 @@ model Admin {
   createdAt      DateTime       @default(now())
   lastUpdatedAt  DateTime       @updatedAt
   account_status ACCOUNT_STATUS @default(active)
-
-  messages Message[]
 }
 
-model ConversationMember {
+model ChatMember {
   id String @id @map("_id") @db.ObjectId
+
+  firstname String
+  lastname  String
+  avatar    String?
 
   isAdmin Boolean @default(false)
 
   seenMessageIds String[]  @db.ObjectId
   seenMessages   Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
 
-  conversationIds String[]       @db.ObjectId
-  conversations   Conversation[] @relation(fields: [conversationIds], references: [id])
+  chatIds String[] @db.ObjectId
+  chats   Chat[]   @relation(fields: [chatIds], references: [id])
+
+  messages Message[]
 }
 
-model Conversation {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+model Chat {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  chat_id String
+
   createdAt     DateTime @default(now())
   lastMessageAt DateTime @default(now())
   groupName     String?
@@ -321,8 +327,8 @@ model Conversation {
   messagesIds String[]  @db.ObjectId
   messages    Message[]
 
-  memberIds String[]             @db.ObjectId
-  members   ConversationMember[] @relation(fields: [memberIds], references: [id])
+  memberIds String[]     @db.ObjectId
+  members   ChatMember[] @relation(fields: [memberIds], references: [id])
 }
 
 model Message {
@@ -331,12 +337,12 @@ model Message {
   image     String?
   createdAt DateTime @default(now())
 
-  seenIds String[]             @db.ObjectId
-  seen    ConversationMember[] @relation("Seen", fields: [seenIds], references: [id])
+  seenIds String[]     @db.ObjectId
+  seen    ChatMember[] @relation("Seen", fields: [seenIds], references: [id])
 
-  conversationId String       @db.ObjectId
-  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  chatId       String @db.ObjectId
+  conversation Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
 
-  senderId String @db.ObjectId
-  sender   Admin  @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  senderId String     @db.ObjectId
+  sender   ChatMember @relation(fields: [senderId], references: [id], onDelete: Cascade)
 }
