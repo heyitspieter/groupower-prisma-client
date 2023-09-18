@@ -238,10 +238,9 @@ type Invites {
 }
 
 type ContactSessions {
-  chatId     String               @db.ObjectId
-  members    String[]             @db.ObjectId
-  numMembers Int
-  status     ContactSessionStatus
+  chatId  String               @db.ObjectId
+  members String[]             @db.ObjectId
+  status  ContactSessionStatus
 }
 
 type MessengerAuth {
@@ -336,8 +335,9 @@ model ChatMember {
 }
 
 model Chat {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  chat_id String
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  chat_id    String
+  numMembers Int
 
   createdAt     DateTime @default(now())
   lastMessageAt DateTime @default(now())
