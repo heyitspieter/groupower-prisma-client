@@ -238,9 +238,10 @@ type Invites {
 }
 
 type ContactSessions {
-  chatId  String               @db.ObjectId
-  members String[]             @db.ObjectId
-  status  ContactSessionStatus
+  chatId     String               @db.ObjectId
+  members    String[]             @db.ObjectId
+  numMembers Int
+  status     ContactSessionStatus
 }
 
 type MessengerAuth {
