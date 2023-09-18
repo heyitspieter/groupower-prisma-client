@@ -232,6 +232,15 @@ type Invites {
   id String? @db.ObjectId
 }
 
+type ContactSessions {
+  chatId String? @db.ObjectId
+}
+
+type MessengerAuth {
+  loggedIn     Boolean
+  lastLoggedIn DateTime
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -291,6 +300,7 @@ model Admin {
   lastname       String?
   emailVerified  Boolean?
   avatar         String?
+  messenger      MessengerAuth?
   permissions    Permission
   role           ROLE           @default(ADMIN)
   hashedPassword String
@@ -347,4 +357,11 @@ model Message {
 
   senderId String     @db.ObjectId
   sender   ChatMember @relation(fields: [senderId], references: [id], onDelete: Cascade)
+}
+
+model Contact {
+  id       String            @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  logo     String
+  sessions ContactSessions[]
 }
