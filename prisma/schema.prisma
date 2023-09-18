@@ -89,6 +89,11 @@ enum TwoFactorAuthChannel {
   SMS
 }
 
+enum ContactSessionStatus {
+  active
+  ended
+}
+
 type Bank_account {
   number String
   bank   String
@@ -233,7 +238,8 @@ type Invites {
 }
 
 type ContactSessions {
-  chatId String? @db.ObjectId
+  chatId String?              @db.ObjectId
+  status ContactSessionStatus
 }
 
 type MessengerAuth {
