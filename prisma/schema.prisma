@@ -157,7 +157,8 @@ type CompanyInfo {
 }
 
 type Appliances {
-  type  APPLIANCES
+  id    String @db.ObjectId
+  name  String
   count Int
 }
 
