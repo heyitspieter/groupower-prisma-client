@@ -372,3 +372,10 @@ model Contact {
   logo     String
   sessions ContactSessions[]
 }
+
+model Appliance {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  min_watt Int
+  max_watt Int
+}
