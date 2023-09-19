@@ -336,7 +336,6 @@ model ChatMember {
 
 model Chat {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
-  chat_id    String
   numMembers Int
 
   createdAt     DateTime @default(now())
