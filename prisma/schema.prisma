@@ -286,7 +286,7 @@ model Application {
   company_expenses CompanyExpenses?
   kyc_verification KYC?
   documentations   Documentations?
-  editExpiry       DateTime
+  editExpiry       DateTime?
   approvedBy       String?            @db.ObjectId
   status           APPLICATION_STATUS @default(pending)
   createdAt        DateTime           @default(now())
