@@ -72,18 +72,6 @@ enum Actions {
   READ
 }
 
-enum APPLIANCES {
-  microwave
-  steam_iron
-  television
-  dish_washer
-  refrigerator
-  aircondition
-  water_heater_system
-  exterior_light_points
-  interior_light_points
-}
-
 enum TwoFactorAuthChannel {
   Email
   SMS
