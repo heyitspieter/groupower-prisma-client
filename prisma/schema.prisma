@@ -234,7 +234,7 @@ type ContactSessions {
 
 type MessengerAuth {
   loggedIn     Boolean
-  lastLoggedIn DateTime
+  lastLoggedIn DateTime?
 }
 
 model User {
@@ -331,6 +331,8 @@ model Chat {
   lastMessageAt DateTime @default(now())
   groupName     String?
   isGroup       Boolean?
+  isSession     Boolean?
+  host          String?   @db.ObjectId
 
   messagesIds String[]  @db.ObjectId
   messages    Message[]
