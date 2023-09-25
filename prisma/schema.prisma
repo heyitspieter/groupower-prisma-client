@@ -77,7 +77,7 @@ enum TwoFactorAuthChannel {
   SMS
 }
 
-enum ContactSessionStatus {
+enum ChatSessionStatus {
   active
   ended
 }
@@ -227,9 +227,9 @@ type Invites {
 }
 
 type ContactSessions {
-  chatId  String               @db.ObjectId
-  members String[]             @db.ObjectId
-  status  ContactSessionStatus
+  chatId  String            @db.ObjectId
+  members String[]          @db.ObjectId
+  status  ChatSessionStatus
 }
 
 type MessengerAuth {
@@ -311,6 +311,7 @@ model ChatMember {
   firstname String
   lastname  String
   avatar    String?
+  role      ROLE
 
   isAdmin Boolean @default(false)
 
@@ -332,13 +333,28 @@ model Chat {
   groupName     String?
   isGroup       Boolean?
   isSession     Boolean?
-  host          String?   @db.ObjectId
+  host          String?  @db.ObjectId
+
+  sessionIds String[]      @db.ObjectId
+  sessions   ChatSession[]
+
+  memberIds String[]     @db.ObjectId
+  members   ChatMember[] @relation(fields: [memberIds], references: [id])
+}
+
+model ChatSession {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  status ChatSessionStatus
 
   messagesIds String[]  @db.ObjectId
   messages    Message[]
 
-  memberIds String[]     @db.ObjectId
-  members   ChatMember[] @relation(fields: [memberIds], references: [id])
+  chatId String @db.ObjectId
+  Chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime  @default(now())
+  endedAt   DateTime? @default(now())
 }
 
 model Message {
@@ -350,23 +366,23 @@ model Message {
   seenIds String[]     @db.ObjectId
   seen    ChatMember[] @relation("Seen", fields: [seenIds], references: [id])
 
-  chatId String @db.ObjectId
-  chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
-
   senderId String     @db.ObjectId
   sender   ChatMember @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+  chatSessionId String      @db.ObjectId
+  chatSession   ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
 }
 
 model Contact {
-  id       String            @id @default(auto()) @map("_id") @db.ObjectId
-  name     String
-  logo     String
-  sessions ContactSessions[]
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  logo String
 }
 
 model Appliance {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   name     String
+  image    String
   min_watt Int
   max_watt Int
 }
