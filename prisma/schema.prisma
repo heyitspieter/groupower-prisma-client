@@ -330,10 +330,11 @@ model Chat {
 
   createdAt     DateTime @default(now())
   lastMessageAt DateTime @default(now())
-  groupName     String?
-  isGroup       Boolean?
-  isSession     Boolean?
-  host          String?  @db.ObjectId
+
+  groupName String?
+  isGroup   Boolean?
+  isSession Boolean?
+  host      String?  @db.ObjectId
 
   sessionIds String[]      @db.ObjectId
   sessions   ChatSession[]
@@ -351,10 +352,12 @@ model ChatSession {
   messages    Message[]
 
   chatId String @db.ObjectId
-  Chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chat   Chat   @relation(fields: [chatId], references: [id], onDelete: Cascade)
 
   createdAt DateTime  @default(now())
   endedAt   DateTime? @default(now())
+
+  lastMessageAt DateTime @default(now())
 }
 
 model Message {
