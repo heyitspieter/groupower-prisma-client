@@ -356,8 +356,6 @@ model ChatSession {
 
   createdAt DateTime  @default(now())
   endedAt   DateTime? @default(now())
-
-  lastMessageAt DateTime @default(now())
 }
 
 model Message {
