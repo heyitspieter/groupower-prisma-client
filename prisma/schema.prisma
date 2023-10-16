@@ -147,6 +147,7 @@ type CompanyInfo {
 type Appliances {
   id    String @db.ObjectId
   name  String
+  image String
   count Int
 }
 
