@@ -238,6 +238,13 @@ type MessengerAuth {
   lastLoggedIn DateTime?
 }
 
+type SolarSpec {
+  batteries   Int
+  controllers Int
+  inverter    Int
+  panels      Int
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -387,4 +394,12 @@ model Appliance {
   image    String
   min_watt Int
   max_watt Int
+}
+
+model SolarSystem {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  image    String
+  spec     SolarSpec
+  capacity Float
+  unit     String    @default("kVA")
 }
