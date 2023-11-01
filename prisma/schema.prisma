@@ -249,11 +249,14 @@ type SolarSystemTariff {
 }
 
 type SolarEquipments {
-  batteries   SolarEquipmentInfo
-  controllers SolarEquipmentInfo
-  inverter    SolarEquipmentInfo
-  panels      SolarEquipmentInfo
-  racks       SolarEquipmentInfo?
+  batteries          SolarEquipmentInfo
+  charge_controllers SolarEquipmentInfo
+  inverter           SolarEquipmentInfo
+  panels             SolarEquipmentInfo
+  racks              SolarEquipmentInfo?
+  mounting_frames    SolarEquipmentInfo?
+  cables             SolarEquipmentInfo?
+  accessories        SolarEquipmentInfo?
 }
 
 model User {
