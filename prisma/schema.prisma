@@ -238,11 +238,22 @@ type MessengerAuth {
   lastLoggedIn DateTime?
 }
 
-type SolarSpec {
-  batteries   Int
-  controllers Int
-  inverter    Int
-  panels      Int
+type SolarEquipmentInfo {
+  units         Int
+  cost_per_unit Int
+}
+
+type SolarSystemTariff {
+  cost_of_installation Int?
+  loan_interes         Int?
+}
+
+type SolarEquipments {
+  batteries   SolarEquipmentInfo
+  controllers SolarEquipmentInfo
+  inverter    SolarEquipmentInfo
+  panels      SolarEquipmentInfo
+  racks       SolarEquipmentInfo?
 }
 
 model User {
@@ -397,9 +408,10 @@ model Appliance {
 }
 
 model SolarSystem {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
-  image    String
-  spec     SolarSpec
-  capacity Float
-  unit     String    @default("kVA")
+  id         String            @id @default(auto()) @map("_id") @db.ObjectId
+  image      String
+  equipments SolarEquipments
+  capacity   Float
+  unit       String            @default("kVA")
+  tariff     SolarSystemTariff
 }
