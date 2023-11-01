@@ -245,7 +245,7 @@ type SolarEquipmentInfo {
 
 type SolarSystemTariff {
   cost_of_installation Int?
-  loan_interes         Int?
+  loan_interest        Int?
 }
 
 type SolarEquipments {
