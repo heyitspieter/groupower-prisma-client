@@ -179,10 +179,11 @@ type HousingInfo {
 }
 
 type CompanyExpenses {
-  govt_electricity_cost  String
-  govt_electricity_hours String
-  power_generation_cost  String
-  power_generation_hours String
+  govt_electricity_cost       String
+  govt_electricity_hours      String
+  power_generation_cost       String
+  power_generation_hours      String
+  daily_power_generation_cost String
 }
 
 type KYC {
@@ -192,7 +193,7 @@ type KYC {
 }
 
 type Documentations {
-  tax_certificate      String
+  annual_revenue       String
   business_reg_number  String
   business_certificate String
 }
