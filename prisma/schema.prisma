@@ -303,6 +303,9 @@ model Application {
   lastUpdatedAt    DateTime           @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  solarPackage     String?      @db.ObjectId
+  solar_preference SolarSystem? @relation(fields: [solarPackage], references: [id])
 }
 
 model NG_STATES {
@@ -417,4 +420,6 @@ model SolarSystem {
   capacity   Float
   unit       String            @default("kVA")
   tariff     SolarSystemTariff
+
+  Application Application[]
 }
