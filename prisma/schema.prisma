@@ -304,8 +304,8 @@ model Application {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  solarPackage     String?      @db.ObjectId
-  solar_preference SolarSystem? @relation(fields: [solarPackage], references: [id])
+  solar_preference String?      @db.ObjectId
+  solarSystem      SolarSystem? @relation(fields: [solar_preference], references: [id])
 }
 
 model NG_STATES {
