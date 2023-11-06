@@ -286,22 +286,22 @@ model User {
 }
 
 model Application {
-  id               String             @id @default(auto()) @map("_id") @db.ObjectId
-  application_id   String             @unique
-  type             String
-  personal_info    PersonalInfo
-  userId           String             @db.ObjectId
-  employment       Employment?
-  company_info     CompanyInfo?
-  housing_info     HousingInfo?
-  company_expenses CompanyExpenses?
-  kyc_verification KYC?
-  documentations   Documentations?
-  editExpiry       DateTime?
-  approvedBy       String?            @db.ObjectId
-  status           APPLICATION_STATUS @default(pending)
-  createdAt        DateTime           @default(now())
-  lastUpdatedAt    DateTime           @updatedAt
+  id                     String             @id @default(auto()) @map("_id") @db.ObjectId
+  application_id         String             @unique
+  type                   String
+  userId                 String             @db.ObjectId
+  personal_info          PersonalInfo
+  company_info           CompanyInfo?
+  company_expenses       CompanyExpenses?
+  company_documentations Documentations?
+  employment             Employment?
+  housing_info           HousingInfo?
+  kyc_verification       KYC?
+  editExpiry             DateTime?
+  approvedBy             String?            @db.ObjectId
+  status                 APPLICATION_STATUS @default(pending)
+  createdAt              DateTime           @default(now())
+  lastUpdatedAt          DateTime           @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
