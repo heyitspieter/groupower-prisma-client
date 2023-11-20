@@ -273,6 +273,88 @@ type SolarEquipments {
   accessories        SolarEquipmentInfo?
 }
 
+type CommunityGeneralInfo {
+  community_name                String
+  community_address             String
+  community_region              String
+  community_country             Country
+  primary_contact_info          String
+  primary_contact_email_address String
+  primary_contact_phone_number  String
+}
+
+type CommunityDemographicInfo {
+  num_residents              String
+  industry_types             String
+  energy_sources             String
+  estimated_households       String
+  estimated_businesses       String
+  industry_contribution      String
+  average_energy_consumption String
+}
+
+type CommunityEnergyRequirements {
+  primary_challenges    String
+  areas_energy_required String
+  energy_rate_forecast  String
+  solar_plant_size      String
+}
+
+type CommunityEconomicInfo {
+  averge_household_income   String
+  num_active_businesses     String
+  active_business_activties String
+}
+
+type CommunityInfrastructrueInfo {
+  existing_electricity_infrastructure String
+  power_grid_connection               String
+  grid_connection_reliability         String
+  logistics_challenges                String
+}
+
+type CommunityEnviromentalInfo {
+  enviromental_concerns      String
+  carbon_footprint_reduction String
+  available_land_space       String
+}
+
+type CommunityTechnicalRequirements {
+  available_space           String
+  solar_mount_location_info String
+}
+
+type CommunityRegulatoryPolicy {
+  existing_regulations       String
+  available_incentives       String
+  solar_installation_permits String
+}
+
+type CommunityEngagement {
+  community_support    String
+  community_challenges String
+  maintenance_sourcing String
+}
+
+type CommunityFiniancialViability {
+  ppa_agreement    String
+  tariff_agreement String
+}
+
+type CommunityProjectTimeline {
+  timeline   String
+  milestones String
+}
+
+type CommunityPartnerships {
+  existing_partnerships String
+}
+
+type CommunityAdditionalComments {
+  additional_information String
+  challenges             String
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -299,11 +381,11 @@ model User {
 }
 
 model Application {
-  id                         String                    @id @default(auto()) @map("_id") @db.ObjectId
-  application_id             String                    @unique
+  id                         String                          @id @default(auto()) @map("_id") @db.ObjectId
+  application_id             String                          @unique
   type                       String
-  userId                     String                    @db.ObjectId
-  personal_info              PersonalInfo
+  userId                     String                          @db.ObjectId
+  personal_info              PersonalInfo?
   company_info               CompanyInfo?
   company_expenses           CompanyExpenses?
   company_documentations     Documentations?
@@ -311,11 +393,24 @@ model Application {
   employment                 Employment?
   housing_info               HousingInfo?
   kyc_verification           KYC?
+  general_info               CommunityGeneralInfo?
+  demographic_info           CommunityDemographicInfo?
+  energy_requirements        CommunityEnergyRequirements?
+  economic_info              CommunityEconomicInfo?
+  infrasctructure_info       CommunityInfrastructrueInfo?
+  enviromental_info          CommunityEnviromentalInfo?
+  technical_requirements     CommunityTechnicalRequirements?
+  regulatory_policy          CommunityRegulatoryPolicy?
+  engagement_info            CommunityEngagement?
+  finiacial_viability        CommunityFiniancialViability?
+  project_timeline           CommunityProjectTimeline?
+  partnership_info           CommunityPartnerships?
+  additional_comments        CommunityAdditionalComments?
   editExpiry                 DateTime?
-  approvedBy                 String?                   @db.ObjectId
-  status                     APPLICATION_STATUS        @default(pending)
-  createdAt                  DateTime                  @default(now())
-  lastUpdatedAt              DateTime                  @updatedAt
+  approvedBy                 String?                         @db.ObjectId
+  status                     APPLICATION_STATUS              @default(pending)
+  createdAt                  DateTime                        @default(now())
+  lastUpdatedAt              DateTime                        @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
