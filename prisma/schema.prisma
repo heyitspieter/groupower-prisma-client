@@ -82,6 +82,11 @@ enum ChatSessionStatus {
   ended
 }
 
+enum MessageStorageType {
+  locale
+  db
+}
+
 type Bank_account {
   number String
   bank   String
@@ -507,6 +512,8 @@ model Message {
 
   chatSessionId String      @db.ObjectId
   chatSession   ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+
+  storage MessageStorageType? @default(db)
 }
 
 model Contact {
