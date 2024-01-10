@@ -361,6 +361,113 @@ type CommunityAdditionalComments {
   challenges             String
 }
 
+type Agent_Profile {
+  agent_name                       String
+  contact_email                    String
+  contact_phone_number             String
+  company_registration_no          String?
+  business_address                 String?
+  sales_experience                 String
+  renewable_energy_work_experience String?
+  relevant_skills_expertise        String
+  areas_of_operation               String
+  open_to_coverage_expansion       String?
+  marketing_approach               String
+  promotion_channels               String
+  existing_customer_network        String?
+  leverage_on_existing_network     String
+  hear_about_us                    String
+  reason_for_joining               String
+  open_to_training                 String
+  commitment_to_represent          String
+  transparency_foster_tactics      String
+  technical_support                String
+  agreement_and_terms              String
+  additional_information           String?
+}
+
+type Installer_Profile {
+  business_name                       String
+  cac_reg_number                      String
+  years_of_incorporation              String
+  business_street_adddress            String
+  business_city                       String
+  business_lga                        String
+  business_state                      String
+  business_country                    String
+  solar_installation_experience       String
+  belong_to_installation_association  String
+  business_owner_fullname             String
+  business_owner_mobile_number        String
+  business_owner_email                String
+  no_of_installations_completed       String
+  type_of_solar_system_installed      String
+  solar_installation_brand_experience String
+  experience_with_grid_installations  String
+  relevant_license                    String
+  solar_installation_certificate      String
+  compliant_with_regulations          String
+  expertise_with_system_design        String
+  solar_installation_proficiency      String
+  mounting_roofing_familiarity        String
+  toubleshooting_experience           String
+  installation_management_ability     String
+  installation_safety_assurance       String
+  project_timeline_approach           String
+  solar_installer_refrences           String
+  successful_installations            String
+  installer_tools                     String
+  access_to_equipment_transportation  String
+  warranty_type                       String
+  post_installation_techniques        String
+  available_installer_regions         String
+  commute_outside_current_area        String
+  installer_liability_insurance       String
+  current_insurance_coverage          String
+  hear_about_us                       String
+  reason_for_collaboration            String
+  open_to_training                    String
+  current_workload_and_availability   String
+  upcoming_commitments                String
+  additional_information              String?
+  specific_expectation_requirements   String?
+}
+
+type Collaborator_Profile {
+  organization_name                  String
+  organization_type                  String
+  organization_email                 String?
+  organization_phone_number          String
+  organization_reg_number            String?
+  organization_mission               String
+  type_of_collaboration              String
+  collaboration_alignment            String
+  prior_collaboration                String
+  successful_collaboration_highlight String
+  organization_capacity              String?
+  organization_finiancial_mechanisms String?
+  organization_solar_products        String?
+  organization_solar_equipment_brand String?
+  organization_certifications        String?
+  organization_operational_regions   String
+  open_to_expansion                  String
+  organization_technical_expertise   String
+  organization_technical_support     String
+  organization_refrences             String
+  compliance_ethical_standards_1     String
+  compliance_ethical_standards_2     String
+  commitment_sustainable_practices   String
+  agreement_terms                    String
+  additional_information             String?
+  specific_expectation_requirements  String?
+}
+
+type ProfileData {
+  agent        Agent_Profile
+  installer    Installer_Profile
+  collaborator Collaborator_Profile
+}
+
 model User {
   id                String         @id @default(auto()) @map("_id") @db.ObjectId
   email             String         @unique
@@ -384,6 +491,7 @@ model User {
   reset_link        ResetPassword?
 
   applications Application[]
+  profile      Profile?
 }
 
 model Application {
@@ -540,4 +648,11 @@ model SolarSystem {
   tariff     SolarSystemTariff
 
   Application Application[]
+}
+
+model Profile {
+  id     String      @id @default(auto()) @map("_id") @db.ObjectId
+  data   ProfileData
+  userId String      @unique @db.ObjectId
+  user   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
