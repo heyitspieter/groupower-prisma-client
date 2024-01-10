@@ -88,6 +88,11 @@ enum MessageStorageType {
   db
 }
 
+enum Collaborator_OrgType {
+  financier
+  solar_oem
+}
+
 type Bank_account {
   number String
   bank   String
@@ -398,6 +403,7 @@ type Installer_Profile {
   business_country                    Country
   solar_installation_experience       String
   belong_to_installation_association  String
+  number_of_technical_staff           String
   business_owner_fullname             String
   business_owner_mobile_number        String
   business_owner_email                String
@@ -436,7 +442,7 @@ type Installer_Profile {
 
 type Collaborator_Profile {
   organization_name                  String
-  organization_type                  String
+  organization_type                  Collaborator_OrgType
   organization_email                 String?
   organization_phone_number          String
   organization_reg_number            String?
