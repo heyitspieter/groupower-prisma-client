@@ -395,7 +395,7 @@ type Installer_Profile {
   business_city                       String
   business_lga                        String
   business_state                      String
-  business_country                    String
+  business_country                    Country
   solar_installation_experience       String
   belong_to_installation_association  String
   business_owner_fullname             String
