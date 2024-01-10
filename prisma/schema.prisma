@@ -417,11 +417,12 @@ type Installer_Profile {
   expertise_with_system_design        String
   solar_installation_proficiency      String
   mounting_roofing_familiarity        String
-  toubleshooting_experience           String
+  troubleshooting_experience           String
   installation_management_ability     String
   installation_safety_assurance       String
   project_timeline_approach           String
-  solar_installer_refrences           String
+  solar_installer_reference_1           String
+  solar_installer_reference_2           String
   successful_installations            String
   installer_tools                     String
   access_to_equipment_transportation  String
