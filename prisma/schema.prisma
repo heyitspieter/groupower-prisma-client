@@ -362,35 +362,36 @@ type CommunityAdditionalComments {
 }
 
 type Agent_Profile {
-  agent_name                       String
-  contact_email                    String
-  contact_phone_number             String
-  company_registration_no          String?
-  business_address                 String?
-  sales_experience                 String
-  renewable_energy_work_experience String?
-  relevant_skills_expertise        String
-  areas_of_operation               String
-  open_to_coverage_expansion       String?
-  marketing_approach               String
-  promotion_channels               String
-  existing_customer_network        String?
-  leverage_on_existing_network     String
-  hear_about_us                    String
-  reason_for_joining               String
-  open_to_training                 String
-  commitment_to_represent          String
-  transparency_foster_tactics      String
-  technical_support                String
-  agreement_and_terms              String
-  additional_information           String?
+  agent_name                        String
+  contact_email                     String
+  contact_phone_number              String
+  company_registration_no           String?
+  business_address                  String?
+  sales_experience                  String
+  renewable_energy_work_experience  String?
+  relevant_skills_expertise         String
+  areas_of_operation                String
+  open_to_coverage_expansion        String?
+  marketing_approach                String
+  promotion_channels                String
+  existing_customer_network         String?
+  leverage_on_existing_network      String
+  hear_about_us                     String
+  reason_for_joining                String
+  open_to_training                  String
+  commitment_to_represent           String
+  transparency_foster_tactics       String
+  technical_support                 String
+  agreement_and_terms               String
+  additional_information            String?
+  specific_expectation_requirements String?
 }
 
 type Installer_Profile {
   business_name                       String
   cac_reg_number                      String
   years_of_incorporation              String
-  business_street_adddress            String
+  business_street_address             String
   business_city                       String
   business_lga                        String
   business_state                      String
