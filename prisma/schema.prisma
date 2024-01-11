@@ -417,12 +417,12 @@ type Installer_Profile {
   expertise_with_system_design        String
   solar_installation_proficiency      String
   mounting_roofing_familiarity        String
-  troubleshooting_experience           String
+  troubleshooting_experience          String
   installation_management_ability     String
   installation_safety_assurance       String
   project_timeline_approach           String
-  solar_installer_reference_1           String
-  solar_installer_reference_2           String
+  solar_installer_reference_1         String
+  solar_installer_reference_2         String
   successful_installations            String
   installer_tools                     String
   access_to_equipment_transportation  String
@@ -442,32 +442,33 @@ type Installer_Profile {
 }
 
 type Collaborator_Profile {
-  organization_name                  String
-  organization_type                  Collaborator_OrgType
-  organization_email                 String?
-  organization_phone_number          String
-  organization_reg_number            String?
-  organization_mission               String
-  type_of_collaboration              String
-  collaboration_alignment            String
-  prior_collaboration                String
-  successful_collaboration_highlight String
-  organization_capacity              String?
-  organization_finiancial_mechanisms String?
-  organization_solar_products        String?
-  organization_solar_equipment_brand String?
-  organization_certifications        String?
-  organization_operational_regions   String
-  open_to_expansion                  String
-  organization_technical_expertise   String
-  organization_technical_support     String
-  organization_refrences             String
-  compliance_ethical_standards_1     String
-  compliance_ethical_standards_2     String
-  commitment_sustainable_practices   String
-  agreement_terms                    String
-  additional_information             String?
-  specific_expectation_requirements  String?
+  organization_name                      String
+  organization_type                      Collaborator_OrgType
+  organization_email                     String?
+  organization_phone_number              String
+  organization_reg_number                String?
+  organization_mission                   String
+  type_of_collaboration                  String
+  collaboration_alignment                String
+  prior_collaboration                    String
+  successful_collaboration_highlight     String
+  organization_capacity                  String?
+  organization_finiancial_mechanisms     String?
+  organization_solar_products            String?
+  organization_solar_equipment_brand     String?
+  organization_certifications            String?
+  organization_operational_regions       String
+  open_to_expansion                      String
+  organization_technical_expertise       String
+  organization_technical_support         String
+  organization_reference_1               String
+  organization_refeerence_2              String
+  organization_ethical_practices         String
+  organization_certifications_adhered_to String
+  commitment_sustainable_practices       String
+  agreement_terms                        String
+  additional_information                 String?
+  specific_expectation_requirements      String?
 }
 
 type ProfileData {
