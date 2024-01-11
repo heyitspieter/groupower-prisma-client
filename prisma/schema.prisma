@@ -462,19 +462,13 @@ type Collaborator_Profile {
   organization_technical_expertise       String
   organization_technical_support         String
   organization_reference_1               String
-  organization_reference_2              String
+  organization_reference_2               String
   organization_ethical_practices         String
   organization_certifications_adhered_to String
   commitment_sustainable_practices       String
   agreement_terms                        String
   additional_information                 String?
   specific_expectation_requirements      String?
-}
-
-type ProfileData {
-  agent        Agent_Profile
-  installer    Installer_Profile
-  collaborator Collaborator_Profile
 }
 
 model User {
@@ -500,7 +494,10 @@ model User {
   reset_link        ResetPassword?
 
   applications Application[]
-  profile      Profile?
+
+  agentProfile        AgentProfile?
+  installerProfile    InstallerProfile?
+  collaboratorProfile CollaboratorProfile?
 }
 
 model Application {
@@ -659,9 +656,23 @@ model SolarSystem {
   Application Application[]
 }
 
-model Profile {
-  id     String      @id @default(auto()) @map("_id") @db.ObjectId
-  data   ProfileData
-  userId String      @unique @db.ObjectId
-  user   User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+model AgentProfile {
+  id     String        @id @default(auto()) @map("_id") @db.ObjectId
+  data   Agent_Profile
+  userId String        @unique @db.ObjectId
+  user   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model InstallerProfile {
+  id     String            @id @default(auto()) @map("_id") @db.ObjectId
+  data   Installer_Profile
+  userId String            @unique @db.ObjectId
+  user   User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model CollaboratorProfile {
+  id     String               @id @default(auto()) @map("_id") @db.ObjectId
+  data   Collaborator_Profile
+  userId String               @unique @db.ObjectId
+  user   User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
