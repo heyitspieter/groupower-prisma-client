@@ -462,7 +462,7 @@ type Collaborator_Profile {
   organization_technical_expertise       String
   organization_technical_support         String
   organization_reference_1               String
-  organization_refeerence_2              String
+  organization_reference_2              String
   organization_ethical_practices         String
   organization_certifications_adhered_to String
   commitment_sustainable_practices       String
