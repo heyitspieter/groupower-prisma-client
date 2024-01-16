@@ -248,10 +248,6 @@ type ResetPassword {
   expiresIn DateTime
 }
 
-type Invites {
-  id String? @db.ObjectId
-}
-
 type ContactSessions {
   chatId  String            @db.ObjectId
   members String[]          @db.ObjectId
@@ -483,7 +479,7 @@ model User {
   config            Settings?
   prefix            PREFIX
   invite_id         String?
-  invites           Invites[]
+  invites           String[]
   gender            GENDER
   phone_number      String?
   hashedPassword    String
