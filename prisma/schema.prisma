@@ -223,11 +223,13 @@ type Documentations {
 }
 
 type Permission {
-  applications Actions[]
-  admins       Actions[]
-  users        Actions[]
-  agents       Actions[]
-  messenger    Actions[]
+  applications  Actions[]
+  admins        Actions[]
+  users         Actions[]
+  agents        Actions[]
+  installers    Actions[]
+  collaborators Actions[]
+  messenger     Actions[]
 }
 
 type TwoFactorAuth {
